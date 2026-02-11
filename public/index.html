@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BotNexus - AI WhatsApp Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Top Navigation -->
+        <header class="top-nav">
+            <div class="logo">
+                <h2>BotNexus</h2>
+                <div class="status-indicator" id="connection-status">Offline</div>
+            </div>
+            <div class="actions">
+                <button onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <main class="main-content-single">
+            <!-- Left Column: Settings & Controls -->
+            <div class="control-panel">
+                <!-- Status & QR -->
+                <div class="card qr-card">
+                    <h3>Connection</h3>
+                    <div class="qr-container" id="qr-container">
+                        <p>Click "Start" to connect</p>
+                    </div>
+                    <div class="controls">
+                        <button class="btn btn-primary" onclick="startSession()">Start</button>
+                        <button class="btn btn-danger" onclick="stopSession()">Stop</button>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div class="card settings-card">
+                    <h3>AI Settings</h3>
+                    <form id="settings-form">
+                        <div class="form-group">
+                            <label>System Prompt</label>
+                            <textarea id="system_prompt" rows="3"
+                                placeholder="You are a helpful assistant..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Groq API Key</label>
+                            <input type="password" id="openai_key" placeholder="gsk_...">
+                        </div>
+                        <div class="form-group">
+                            <label>Model</label>
+                            <select id="openai_model">
+                                <option value="" disabled selected>Loading models...</option>
+                            </select>
+                            <small id="model-loading" style="display:none; color: var(--accent-color);">Fetching
+                                models...</small>
+                        </div>
+                        <button type="submit" class="btn btn-save">Save Configuration</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Column: Chat Interface -->
+            <div class="chat-panel">
+                <div class="chat-header">
+                    <h3>Live Conversation</h3>
+                </div>
+                <div class="chat-window" id="chat-window">
+                    <!-- Messages will appear here -->
+                    <div class="system-message">Welcome to BotNexus. Start the session to begin.</div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
