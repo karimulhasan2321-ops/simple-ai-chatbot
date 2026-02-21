@@ -24,7 +24,18 @@ class SessionManager {
             authStrategy: new LocalAuth({ clientId: 'whatsapp-bot' }),
             puppeteer: {
                 headless: true,
-                args: ['--no-sandbox', '--disable-setuid-sandbox']
+                args: [
+                    '--no-sandbox',
+                    '--disable-setuid-sandbox',
+                    '--disable-dev-shm-usage',
+                    '--disable-gpu',
+                    '--disable-extensions',
+                    '--no-first-run',
+                    '--no-zygote',
+                    '--single-process',
+                    '--disable-accelerated-2d-canvas',
+                    '--disable-software-rasterizer'
+                ]
             }
         });
 
